@@ -4,19 +4,24 @@
   "description": "Ryohlan's portfolio",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ryohlan/ryohlan.github.io.git"
   },
-  "keywords": [
-    "ryohlan"
-  ],
+  "keywords": ["ryohlan"],
   "author": "Ryohlan",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/ryohlan/ryohlan.github.io/issues"
   },
-  "homepage": "https://github.com/ryohlan/ryohlan.github.io#readme"
+  "homepage": "https://github.com/ryohlan/ryohlan.github.io#readme",
+  "dependencies": {
+    "next": "^5.0.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0"
+  }
 }
