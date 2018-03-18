@@ -301,7 +301,7 @@ export default class extends React.Component<void, State> {
                 onClick={() => this.pushRoutes("blogs")}
                 active={activeNavName === "blogs"}
               >
-                Blog Posts
+                Posts
               </NavItem>
               <NavItem
                 onClick={() => this.pushRoutes("apps")}
