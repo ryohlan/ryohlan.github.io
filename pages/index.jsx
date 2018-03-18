@@ -177,7 +177,7 @@ export default class extends React.Component<void, State> {
 
   setActiveNavName(query: string) {
     this.setState({
-      activeNavName: /(blogs|slides|apps)/.test(query) ? query : "blogs"
+      activeNavName: /^(blogs|slides|apps)$/.test(query) ? query : "blogs"
     });
   }
 
