@@ -48,3 +48,7 @@ pre code {
   font-weight: 100;
   background-color: transparent !important;
 }
+
+p {
+  word-wrap: break-word;
+}

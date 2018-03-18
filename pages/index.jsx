@@ -7,6 +7,8 @@ import Router from "next/router";
 
 type PageType = "blogs" | "slides" | "apps";
 
+const SP_BREAK_POINT = "480px";
+
 interface State {
   blogs: Array<any>;
   slides: Array<any>;
@@ -23,11 +25,17 @@ const Wrapper = Styled.div`
   min-height: 100vh;
   padding: 2em;
   box-sizing: border-box;
+  @media(max-width: ${SP_BREAK_POINT}) {
+    padding: 1em;
+  }
 `;
 
 const Main = Styled.main`
   display: flex;
   position: relative;
+  @media(max-width: ${SP_BREAK_POINT}) {
+    display: block;
+  }
 `;
 
 const ProfileWrapper = Styled.section`
@@ -57,6 +65,14 @@ const MenuArea = Styled.nav`
   position: absolute;
   top: 0;
   left: 0;
+  display: flex;
+  flex-direction: column;
+  @media(max-width: ${SP_BREAK_POINT}) {
+    min-width: 0;
+    max-width: 100%;
+    position: relative;
+    flex-direction: column-reverse;
+  }
 `;
 
 const Skills = Styled.span`
@@ -71,7 +87,14 @@ const Contact = Styled.span`
   margin-top: 1em;
 `;
 
+const NavList = Styled.div`
+  @media(max-width: ${SP_BREAK_POINT}) {
+    display: flex;
+  }
+`;
+
 const NavItem = Styled.div`
+  flex: 1;
   padding: 6px;
   background-color: ${({ active }) => (active ? "#505156" : "#FFF")};
   border-radius: 1px;
@@ -94,6 +117,8 @@ const NavItem = Styled.div`
   };
   &:hover {
     background-color: ${({ active }) => !active && "#c5c6cc"};
+  };
+  @media(max-width: ${SP_BREAK_POINT}) {
   }
 `;
 
@@ -101,6 +126,9 @@ const ContentArea = Styled.div`
   margin-left: 220px;
   flex: 1;
   min-height: 90vh;
+  @media(max-width: ${SP_BREAK_POINT}) {
+    margin-left: 0;
+  }
 `;
 
 const SectionTitle = Styled.h1`
@@ -144,6 +172,7 @@ const BlogTitle = Styled.h1`
 
 const BlogBody = Styled.div`
   margin-top: 2em;
+  wor
 `;
 
 const UpdatedTime = Styled.time`
@@ -254,24 +283,26 @@ export default class extends React.Component<void, State> {
       <Wrapper>
         <Main>
           <MenuArea>
-            <NavItem
-              onClick={() => this.pushRoutes("blogs")}
-              active={activeNavName === "blogs"}
-            >
-              Blog Posts
-            </NavItem>
-            <NavItem
-              onClick={() => this.pushRoutes("slides")}
-              active={activeNavName === "slides"}
-            >
-              Slides
-            </NavItem>
-            <NavItem
-              onClick={() => this.pushRoutes("apps")}
-              active={activeNavName === "apps"}
-            >
-              Apps
-            </NavItem>
+            <NavList>
+              <NavItem
+                onClick={() => this.pushRoutes("blogs")}
+                active={activeNavName === "blogs"}
+              >
+                Blog Posts
+              </NavItem>
+              <NavItem
+                onClick={() => this.pushRoutes("apps")}
+                active={activeNavName === "apps"}
+              >
+                Apps
+              </NavItem>
+              <NavItem
+                onClick={() => this.pushRoutes("slides")}
+                active={activeNavName === "slides"}
+              >
+                Slides
+              </NavItem>
+            </NavList>
             <ProfileWrapper>
               <Icon />
               <ProfileName>Ryohlan</ProfileName>
