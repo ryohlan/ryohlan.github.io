@@ -196,12 +196,8 @@ export default class extends React.Component<void, State> {
     }
   }
 
-  pushRoutes(pageName: PageType) {
-    Router.push({
-      pathname: "/",
-      query: { page: pageName },
-      shallow: true
-    });
+  pushRoutes(activeNavName: PageType) {
+    this.setState({ activeNavName });
   }
 
   componentWillReceiveProps(nextProps) {
