@@ -172,8 +172,13 @@ export default class extends React.Component<void, State> {
 
   componentDidMount() {
     API.getBlogs().then(blogs => this.setState({ blogs }));
-    const { query } = this.props.url;
-    this.setState({ activeNavName: query.page });
+    this.setActiveNavName(this.props.url.query.page);
+  }
+
+  setActiveNavName(query: string) {
+    this.setState({
+      activeNavName: /(blogs|slides|apps)/.test(query) ? query : "blogs"
+    });
   }
 
   pushRoutes(pageName: PageType) {
@@ -185,8 +190,7 @@ export default class extends React.Component<void, State> {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { query } = nextProps.url;
-    this.setState({ activeNavName: query.page });
+    this.setActiveNavName(nextProps.url.query.page);
   }
 
   renderNoContents() {
