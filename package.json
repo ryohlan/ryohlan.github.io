@@ -5,16 +5,14 @@
   "main": "index.js",
   "scripts": {
     "dev": "next",
-    "build": "next build",
+    "build": "next build && next export",
     "start": "next start"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ryohlan/ryohlan.github.io.git"
   },
-  "keywords": [
-    "ryohlan"
-  ],
+  "keywords": ["ryohlan"],
   "author": "Ryohlan",
   "license": "ISC",
   "bugs": {
