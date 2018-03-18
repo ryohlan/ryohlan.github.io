@@ -165,6 +165,9 @@ const BlogPost = Styled.article.attrs({
   border-radius: 1px;
   position: relative;
   animation: ${BlogPostKeyFrames} 0.2s linear;
+  @media(max-width: ${SP_BREAK_POINT}) {
+    padding: 1.5em;
+  }
 `;
 
 const BlogTitle = Styled.h1`
