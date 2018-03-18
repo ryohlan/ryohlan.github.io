@@ -1,5 +1,6 @@
 import React from "react";
 import Hljs from "highlight.js";
+import Styled from "styled-components";
 
 interface Props {
   value: string;
