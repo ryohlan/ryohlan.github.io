@@ -1,5 +1,5 @@
 import React from "react";
-import Styled from "styled-components";
+import Styled, { keyframes } from "styled-components";
 import ReactMarkdown from "react-markdown";
 import * as API from "../Api";
 import CodeBlock from "../CodeBlock";
@@ -140,6 +140,18 @@ const BlogList = Styled.ul`
   padding: 0;
 `;
 
+const BlogPostKeyFrames = keyframes`
+  from {
+    opacity: 0;
+    margin-top: 6px;
+  }
+
+  to {
+    opacity: 1;
+    margin-top: 0;
+  }
+`;
+
 const BlogPost = Styled.article.attrs({
   className: "blog-post"
 })`
@@ -152,6 +164,7 @@ const BlogPost = Styled.article.attrs({
   overflow: hidden;
   border-radius: 1px;
   position: relative;
+  animation: ${BlogPostKeyFrames} 0.2s linear;
 `;
 
 const BlogTitle = Styled.h1`
