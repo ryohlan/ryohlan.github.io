@@ -171,14 +171,29 @@ export default class extends React.Component<void, State> {
   };
 
   componentDidMount() {
-    API.getBlogs().then(blogs => this.setState({ blogs }));
     this.setActiveNavName(this.props.url.query.page);
   }
 
   setActiveNavName(query: string) {
-    this.setState({
-      activeNavName: /^(blogs|slides|apps)$/.test(query) ? query : "blogs"
-    });
+    const activeNavName: PageType = /^(blogs|slides|apps)$/.test(query)
+      ? query
+      : "blogs";
+    this.setState({ activeNavName });
+    switch (activeNavName) {
+      default:
+      case "blogs": {
+        API.getBlogs().then(blogs => this.setState({ blogs }));
+        break;
+      }
+      case "slides": {
+        API.getSlides().then(slides => this.setState({ slides }));
+        break;
+      }
+      case "apps": {
+        API.getApps().then(apps => this.setState({ apps }));
+        break;
+      }
+    }
   }
 
   pushRoutes(pageName: PageType) {
@@ -241,7 +256,6 @@ export default class extends React.Component<void, State> {
     const { activeNavName } = this.state;
     return (
       <Wrapper>
-        <PageTitle>Ryohlan's Portfolio</PageTitle>
         <Main>
           <MenuArea>
             <NavItem
