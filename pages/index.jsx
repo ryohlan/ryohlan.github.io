@@ -5,15 +5,15 @@ import * as API from "../Api";
 import CodeBlock from "../CodeBlock";
 import Router from "next/router";
 
-type PageType = "blogs" | "slides" | "apps";
+type PageType = "blogs" | "others" | "products";
 
 const SP_BREAK_POINT = "480px";
 
 interface State {
   blogs: Array<any>;
-  slides: Array<any>;
-  apps: Array<any>;
-  activeNavName: PageType;
+  others: Array<any>;
+  products: Array<any>;
+  page: PageType;
 }
 
 const PageTitle = Styled.h1`
@@ -26,7 +26,7 @@ const Wrapper = Styled.div`
   padding: 2em;
   box-sizing: border-box;
   @media(max-width: ${SP_BREAK_POINT}) {
-    padding: 1em;
+    padding: 0;
   }
 `;
 
@@ -41,7 +41,6 @@ const Main = Styled.main`
 const ProfileWrapper = Styled.section`
   background-color: #FFF;
   border-radius: 1px;
-  margin-bottom: 1em;
   padding: 2em;
   display: flex;
   flex-direction: column;
@@ -76,13 +75,13 @@ const MenuArea = Styled.nav`
 `;
 
 const Skills = Styled.span`
-  font-size: 0.7em;
+  font-size: 0.8em;
   text-align: center;
   margin-top: 1em;
 `;
 
 const Contact = Styled.span`
-  font-size: 0.7em;
+  font-size: 0.8em;
   text-align: center;
   margin-top: 1em;
 `;
@@ -90,6 +89,7 @@ const Contact = Styled.span`
 const NavList = Styled.div`
   @media(max-width: ${SP_BREAK_POINT}) {
     display: flex;
+    margin: 0.3rem;
   }
 `;
 
@@ -104,6 +104,9 @@ const NavItem = Styled.div`
   color: ${({ active }) => (active ? "#FFF" : "#505156")}
   transition-duration: 0.5s;
   cursor: ${({ active }) => (active ? "normal" : "pointer")};
+  @media(max-width: ${SP_BREAK_POINT}) {
+    margin: 0.3rem;
+  }
   &:before {
     transition-duration: 0.5s;
     content: '';
@@ -118,8 +121,6 @@ const NavItem = Styled.div`
   &:hover {
     background-color: ${({ active }) => !active && "#c5c6cc"};
   };
-  @media(max-width: ${SP_BREAK_POINT}) {
-  }
 `;
 
 const ContentArea = Styled.div`
@@ -187,8 +188,7 @@ const BlogTitle = Styled.h1`
 `;
 
 const BlogBody = Styled.div`
-  margin-top: 2em;
-  wor
+  margin-top: 1.5em;
 `;
 
 const UpdatedTime = Styled.time`
@@ -210,43 +210,36 @@ const Footer = Styled.footer`
 export default class extends React.Component<void, State> {
   state: State = {
     blogs: [],
-    slides: [],
-    apps: [],
-    activeNavName: ""
+    others: [],
+    products: [],
+    page: "blogs"
   };
 
   componentDidMount() {
-    this.setActiveNavName(this.props.url.query.page);
+    this.fetchPageContents();
   }
 
-  setActiveNavName(query: string) {
-    const activeNavName: PageType = /^(blogs|slides|apps)$/.test(query)
-      ? query
-      : "blogs";
-    this.setState({ activeNavName });
-    switch (activeNavName) {
+  fetchPageContents() {
+    const { page } = this.state;
+    switch (page) {
       default:
       case "blogs": {
         API.getBlogs().then(blogs => this.setState({ blogs }));
         break;
       }
-      case "slides": {
-        API.getSlides().then(slides => this.setState({ slides }));
+      case "others": {
+        API.getOthers().then(others => this.setState({ others }));
         break;
       }
-      case "apps": {
-        API.getApps().then(apps => this.setState({ apps }));
+      case "products": {
+        API.getProducts().then(products => this.setState({ products }));
         break;
       }
     }
   }
 
-  pushRoutes(activeNavName: PageType) {
-    this.setState({ activeNavName });
-  }
-
-  componentWillReceiveProps(nextProps) {
-    this.setActiveNavName(nextProps.url.query.page);
+  pushRoutes(page: PageType) {
+    this.setState({ page });
   }
 
   renderNoContents() {
@@ -279,22 +272,22 @@ export default class extends React.Component<void, State> {
     );
   }
 
-  renderSlides() {
-    const { slides } = this.state;
-    if (slides.length === 0) return this.renderNoContents();
+  renderOthers() {
+    const { others } = this.state;
+    if (others.length === 0) return this.renderNoContents();
 
     return null;
   }
 
-  renderApps() {
-    const { apps } = this.state;
-    if (apps.length === 0) return this.renderNoContents();
+  renderProducts() {
+    const { products } = this.state;
+    if (products.length === 0) return this.renderNoContents();
 
-    return null;
+    return products.map(p => <h2 key={p.id}>{p.title}</h2>);
   }
 
   render() {
-    const { activeNavName } = this.state;
+    const { page } = this.state;
     return (
       <Wrapper>
         <Main>
@@ -302,36 +295,36 @@ export default class extends React.Component<void, State> {
             <NavList>
               <NavItem
                 onClick={() => this.pushRoutes("blogs")}
-                active={activeNavName === "blogs"}
+                active={page === "blogs"}
               >
                 Posts
               </NavItem>
               <NavItem
-                onClick={() => this.pushRoutes("apps")}
-                active={activeNavName === "apps"}
+                onClick={() => this.pushRoutes("products")}
+                active={page === "products"}
               >
-                Apps
+                Products
               </NavItem>
               <NavItem
-                onClick={() => this.pushRoutes("slides")}
-                active={activeNavName === "slides"}
+                onClick={() => this.pushRoutes("others")}
+                active={page === "others"}
               >
-                Slides
+                Others
               </NavItem>
             </NavList>
             <ProfileWrapper>
               <Icon />
               <ProfileName>Ryohlan</ProfileName>
               <Skills>
-                iOS/Androd apps,<br /> Web front-end developer, Web Designer
+                iOS/Androd Apps,<br /> Web front-end developer, Web Designer
               </Skills>
               <Contact>Contact me: sabure.app[at]gmail.com</Contact>
             </ProfileWrapper>
           </MenuArea>
           <ContentArea>
-            {activeNavName === "blogs" && this.renderBlogs()}
-            {activeNavName === "slides" && this.renderSlides()}
-            {activeNavName === "apps" && this.renderApps()}
+            {page === "blogs" && this.renderBlogs()}
+            {page === "others" && this.renderOthers()}
+            {page === "products" && this.renderProducts()}
           </ContentArea>
         </Main>
         <Footer>powered by Github Pages + Nextjs</Footer>

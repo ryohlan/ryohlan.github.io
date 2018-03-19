@@ -3,6 +3,7 @@ const url =
 
 export const getBlogs = () => fetch(url + "&labels=Blog").then(s => s.json());
 
-export const getSlides = () => fetch(url + "&labels=Slide").then(s => s.json());
+export const getOthers = () => fetch(url + "&labels=Other").then(s => s.json());
 
-export const getApps = () => fetch(url + "&labels=App").then(s => s.json());
+export const getProducts = () =>
+  fetch(url + "&labels=Product").then(s => s.json());

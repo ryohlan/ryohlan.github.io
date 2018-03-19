@@ -7,6 +7,25 @@ interface Props {
   language: string;
 }
 
+const Pre = Styled.pre`
+  overflow: scroll;
+  background-color: #2f3235;
+  color: #eee;
+  font-size: 0.9em;
+  border-radius: 2px;
+  margin: 1rem 0;
+  @media(max-width: 480px) {
+    margin: 1rem -1.5rem;
+    border-radius: 0;
+  }
+`;
+
+const Code = Styled.code`
+  font-family: "Source Code Pro", monospace;
+  font-weight: 100;
+  background-color: transparent !important;
+`;
+
 export default class extends React.PureComponent {
   constructor(props) {
     super(props);
@@ -31,11 +50,11 @@ export default class extends React.PureComponent {
 
   render() {
     return (
-      <pre>
+      <Pre>
         <code ref={this.setRef} className={`language-${this.props.language}`}>
           {this.props.value}
         </code>
-      </pre>
+      </Pre>
     );
   }
 }

@@ -28,24 +28,16 @@ html {
 }
 
 .blog-post p {
-  font-size: 1.1em;
+  font-size: 1em;
   line-height: 2rem;
   margin: 0.3rem 0;
-  letter-spacing: 0.02em;
-}
-
-pre {
-  background-color: #2f3235;
-  color: #eee;
-  font-size: 0.9em;
-  padding: 1.5rem;
-  border-radius: 2px;
-  margin: 1rem 0;
+  letter-spacing: 0.05em;
 }
 
 pre code {
   font-family: "Source Code Pro", monospace;
   font-weight: 100;
+  padding: 1.5rem !important;
   background-color: transparent !important;
 }
 
