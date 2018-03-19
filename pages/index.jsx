@@ -159,7 +159,6 @@ const BlogPost = Styled.article.attrs({
   padding: 3em;
   background-color: #FFF;
   margin-bottom: 0.8em;
-  cursor: pointer;
   position: relative;
   transition-duration: 0.5s;
   overflow: hidden;
