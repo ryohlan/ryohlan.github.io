@@ -5,9 +5,19 @@ import * as API from "../Api";
 import CodeBlock from "../markdown/CodeBlock";
 import Link from "../markdown/Link";
 import Router from "next/router";
+import GithubIcon from "react-icons/lib/fa/github";
+import TwitterIcon from "react-icons/lib/fa/twitter";
+import FacebookIcon from "react-icons/lib/fa/facebook-square";
+
 type PageType = "blogs" | "others" | "products";
 
 const SP_BREAK_POINT = "480px";
+
+const Links = {
+  gh: "https://github.com/ryohlan",
+  fb: "https://www.facebook.com/ryosuke.hara.52",
+  tw: "https://twitter.com/Ryohlan"
+};
 
 interface State {
   blogs: Array<any>;
@@ -55,7 +65,7 @@ const Icon = Styled.img.attrs({
 `;
 
 const ProfileName = Styled.span`
-  margin-top: 1em;
+  margin-top: 1rem;
 `;
 
 const MenuArea = Styled.nav`
@@ -77,13 +87,13 @@ const MenuArea = Styled.nav`
 const Skills = Styled.span`
   font-size: 0.8em;
   text-align: center;
-  margin-top: 1em;
+  margin-top: 1rem;
 `;
 
 const Contact = Styled.span`
   font-size: 0.8em;
   text-align: center;
-  margin-top: 1em;
+  margin-top: 1rem;
 `;
 
 const NavList = Styled.div`
@@ -193,6 +203,17 @@ const BlogBody = Styled.div`
 const UpdatedTime = Styled.time`
   font-size: 0.8em;
   margin-bottm: 3em;
+`;
+
+const Icons = Styled.div`
+  display: flex;
+  align-items: center;
+  margin-top: 1em;
+`;
+
+const IconWrapper = Styled.a.attrs({ target: "_blank" })`
+  margin: 0 3px;
+  display: block;
 `;
 
 const Space = Styled.div`
@@ -318,6 +339,17 @@ export default class extends React.Component<void, State> {
                 iOS/Androd Apps,<br /> Web front-end developer, Web Designer
               </Skills>
               <Contact>Contact me: sabure.app[at]gmail.com</Contact>
+              <Icons>
+                <IconWrapper href={Links.gh}>
+                  <GithubIcon color="#505156" size={24} />
+                </IconWrapper>
+                <IconWrapper href={Links.tw}>
+                  <TwitterIcon color="#505156" size={24} />
+                </IconWrapper>
+                <IconWrapper href={Links.fb}>
+                  <FacebookIcon color="#505156" size={23} />
+                </IconWrapper>
+              </Icons>
             </ProfileWrapper>
           </MenuArea>
           <ContentArea>
