@@ -16,7 +16,7 @@ export default class extends Document {
       <html>
         <Head>
           <meta property="og:title" content="Ryohlan's Portfolio" />
-          <meta property="og:type" content="blog" />
+          <meta property="og:type" content="website" />
           <meta
             property="og:description"
             content="Web enginner Ryohlan's portfolio"
