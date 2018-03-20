@@ -15,6 +15,18 @@ export default class extends Document {
     return (
       <html>
         <Head>
+          <meta property="og:title" content="Ryohlan's Portfolio" />
+          <meta property="og:type" content="blog" />
+          <meta
+            property="og:description"
+            content="Web enginner Ryohlan's portfolio"
+          />
+          <meta property="og:url" content="https://ryohlan.github.io" />
+          <meta
+            property="og:image"
+            content="https://ryohlan.github.io/static/images/og-image.png"
+          />
+          <meta property="og:site_name" content="Ryohlan's Portfolio" />
           <script
             dangerouslySetInnerHTML={{
               __html: `
