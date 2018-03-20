@@ -2,9 +2,9 @@ import React from "react";
 import Styled, { keyframes } from "styled-components";
 import ReactMarkdown from "react-markdown";
 import * as API from "../Api";
-import CodeBlock from "../CodeBlock";
+import CodeBlock from "../markdown/CodeBlock";
+import Link from "../markdown/Link";
 import Router from "next/router";
-
 type PageType = "blogs" | "others" | "products";
 
 const SP_BREAK_POINT = "480px";
@@ -261,7 +261,7 @@ export default class extends React.Component<void, State> {
               <BlogBody>
                 <ReactMarkdown
                   source={s.body}
-                  renderers={{ code: CodeBlock }}
+                  renderers={{ code: CodeBlock, link: Link }}
                 />
               </BlogBody>
             </BlogPost>
