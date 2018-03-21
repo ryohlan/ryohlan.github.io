@@ -8,21 +8,21 @@ interface Props {
 }
 
 const FadeInOut = keyframes`
-  from {
+  0% {
     opacity: 0;
     margin-top: 6px;
   }
 
-  to {
+  100% {
     opacity: 1;
-    margin-top: 0;
+    margin-top: 2px;
   }
 `;
 
 const ProductList = Styled.section`
   display: flex;
   flex-wrap: wrap;
-  @media(max-width: ${Values.SP_BREAK_POINT}) {
+  @media(max-width: ${800}px) {
     flex-direction: column;
   }
 `;

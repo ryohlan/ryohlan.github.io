@@ -149,7 +149,7 @@ const Icons = Styled.div`
 `;
 
 const IconWrapper = Styled.a.attrs({ target: "_blank" })`
-  margin: 0 3px;
+  margin: 0 6px;
   display: block;
 `;
 
@@ -171,16 +171,20 @@ export default class extends React.Component<void, State> {
     products: []
   };
 
+  getPageQuery({ asPath, query }) {
+    return query.page || asPath.replace(/.*\/?page=/, "") || "blogs";
+  }
+
   componentDidMount() {
-    this.fetchPageContents();
+    this.fetchPageContents(this.props.url);
   }
 
-  componentWillReceiveProps() {
-    this.fetchPageContents();
+  componentWillReceiveProps(nextProps) {
+    this.fetchPageContents(nextProps.url);
   }
 
-  fetchPageContents() {
-    const { page } = this.props.url.query;
+  fetchPageContents(url) {
+    const page = this.getPageQuery(url);
     switch (page) {
       default:
       case "blogs": {
@@ -204,7 +208,7 @@ export default class extends React.Component<void, State> {
   }
 
   renderNoContents() {
-    return <p>No contents</p>;
+    return <p style={{ padding: "3em", textAlign: "center" }}>No contents</p>;
   }
 
   renderBlogs() {
@@ -229,7 +233,7 @@ export default class extends React.Component<void, State> {
   }
 
   render() {
-    const { page = "blogs" } = this.props.url.query;
+    const page = this.getPageQuery(this.props.url);
     return (
       <React.Fragment>
         <Wrapper>

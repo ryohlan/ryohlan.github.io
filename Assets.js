@@ -1,7 +1,7 @@
 import Color from "color";
 
 export const Values = {
-  SP_BREAK_POINT: "480px",
+  SP_BREAK_POINT: "680px",
   Links: {
     gh: "https://github.com/ryohlan",
     fb: "https://www.facebook.com/ryosuke.hara.52",
