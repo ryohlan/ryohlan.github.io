@@ -47,7 +47,7 @@ const renderSPApp = markdown => (
       image: Styled.img`
         height: 40px;
         float: left;
-        margin-right: 2rem;
+        margin-right: 1rem;
       `,
       heading: Styled.h1`
         height: 40px;
