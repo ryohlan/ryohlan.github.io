@@ -9,6 +9,7 @@ import { Values, Colors } from "../Assets";
 import BlogList from "../components/BlogList";
 import ProductList from "../components/ProductList";
 import Menu from "../components/Menu";
+import OtherList from "../components/OtherList";
 
 type PageType = "blogs" | "others" | "products";
 
@@ -126,7 +127,7 @@ export default class extends React.Component<void, State> {
     const { others } = this.state;
     if (others.length === 0) return this.renderNoContents();
 
-    return null;
+    return <OtherList others={others} />;
   }
 
   renderProducts() {
@@ -147,8 +148,8 @@ export default class extends React.Component<void, State> {
             </MenuArea>
             <ContentArea>
               {page === "blogs" && this.renderBlogs()}
-              {page === "others" && this.renderOthers()}
               {page === "products" && this.renderProducts()}
+              {page === "others" && this.renderOthers()}
             </ContentArea>
           </Main>
         </Wrapper>
