@@ -74,7 +74,9 @@ export default ({ products }: Props) => (
   <ProductList>
     {products.map(md => {
       if (md.labels.find(l => l.name === "SPApp")) {
-        return <ProductWrapper>{renderSPApp(md.body)}</ProductWrapper>;
+        return (
+          <ProductWrapper key={md.id}>{renderSPApp(md.body)}</ProductWrapper>
+        );
       }
     })}
   </ProductList>
