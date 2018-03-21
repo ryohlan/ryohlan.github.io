@@ -1,11 +1,23 @@
 import React from "react";
-import Styled from "styled-components";
+import Styled, { keyframes } from "styled-components";
 import ReactMarkdown from "react-markdown";
 import { Colors, Values } from "../Assets";
 
 interface Props {
   products: Array<object>;
 }
+
+const FadeInOut = keyframes`
+  from {
+    opacity: 0;
+    margin-top: 6px;
+  }
+
+  to {
+    opacity: 1;
+    margin-top: 0;
+  }
+`;
 
 const ProductList = Styled.section`
   display: flex;
@@ -22,6 +34,7 @@ const ProductWrapper = Styled.div`
   margin: 2px;
   flex: 1;
   min-width: 30%;
+  animation: ${FadeInOut} 0.2s linear;
   @media(max-width: ${Values.SP_BREAK_POINT}) {
     margin: 2px 0;
   }

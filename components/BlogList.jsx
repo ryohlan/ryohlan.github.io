@@ -14,7 +14,7 @@ const BlogList = Styled.ul`
   padding: 0;
 `;
 
-const BlogPostKeyFrames = keyframes`
+const FadeInOut = keyframes`
   from {
     opacity: 0;
     margin-top: 6px;
@@ -37,7 +37,7 @@ const BlogPost = Styled.article.attrs({
   overflow: hidden;
   border-radius: 1px;
   position: relative;
-  animation: ${BlogPostKeyFrames} 0.2s linear;
+  animation: ${FadeInOut} 0.2s linear;
   @media(max-width: ${Values.SP_BREAK_POINT}) {
     padding: 1.5em;
   }
