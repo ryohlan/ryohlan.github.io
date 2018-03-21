@@ -1,0 +1,46 @@
+@import url("https://fonts.googleapis.com/css?family=Noto+Serif:400,700");
+@import url("https://fonts.googleapis.com/css?family=Source+Code+Pro:400");
+
+* {
+  margin: 0;
+}
+
+html {
+  font-size: 14px;
+  color: #505156;
+  font-family: "Source Code Pro", monospace;
+  background-color: #f1f1f1;
+}
+
+.blog-post {
+  font-family: "Noto Serif", serif;
+}
+
+.blog-post h1 {
+  font-size: 1.5em;
+}
+
+.blog-post h2 {
+  font-size: 1.3em;
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.5em;
+}
+
+.blog-post p {
+  font-size: 1em;
+  line-height: 2rem;
+  margin: 0.3rem 0;
+  letter-spacing: 0.05em;
+}
+
+pre code {
+  font-family: "Source Code Pro", monospace;
+  font-weight: 100;
+  padding: 1.5rem !important;
+  background-color: transparent !important;
+}
+
+p {
+  word-wrap: break-word;
+}
