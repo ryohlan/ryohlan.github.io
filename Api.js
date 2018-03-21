@@ -1,5 +1,5 @@
 const url =
-  "https://api.github.com/repos/ryohlan/ryohlan.github.io/issues?author_association=OWNER";
+  "https://api.github.com/repos/ryohlan/ryohlan.github.io/issues?author_association=OWNER&sort=updated";
 
 export const getBlogs = () => fetch(url + "&labels=Blog").then(s => s.json());
 

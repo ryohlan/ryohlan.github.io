@@ -1,23 +1,18 @@
 import React from "react";
-import Styled, { keyframes } from "styled-components";
+import Styled from "styled-components";
 import ReactMarkdown from "react-markdown";
 import * as API from "../Api";
-import CodeBlock from "../markdown/CodeBlock";
-import Link from "../markdown/Link";
+import CodeBlock from "../components/markdown/CodeBlock";
+import Link from "../components/markdown/Link";
 import Router from "next/router";
 import GithubIcon from "react-icons/lib/fa/github";
 import TwitterIcon from "react-icons/lib/fa/twitter";
 import FacebookIcon from "react-icons/lib/fa/facebook-square";
+import { Values, Colors } from "../Assets";
+import BlogList from "../components/BlogList";
+import ProductList from "../components/ProductList";
 
 type PageType = "blogs" | "others" | "products";
-
-const SP_BREAK_POINT = "480px";
-
-const Links = {
-  gh: "https://github.com/ryohlan",
-  fb: "https://www.facebook.com/ryosuke.hara.52",
-  tw: "https://twitter.com/Ryohlan"
-};
 
 interface State {
   blogs: Array<any>;
@@ -33,9 +28,9 @@ const PageTitle = Styled.h1`
 
 const Wrapper = Styled.div`
   min-height: 100vh;
-  padding: 2em;
+  padding: 2rem 2rem 0;
   box-sizing: border-box;
-  @media(max-width: ${SP_BREAK_POINT}) {
+  @media(max-width: ${Values.SP_BREAK_POINT}) {
     padding: 0;
   }
 `;
@@ -43,7 +38,7 @@ const Wrapper = Styled.div`
 const Main = Styled.main`
   display: flex;
   position: relative;
-  @media(max-width: ${SP_BREAK_POINT}) {
+  @media(max-width: ${Values.SP_BREAK_POINT}) {
     display: block;
   }
 `;
@@ -76,7 +71,7 @@ const MenuArea = Styled.nav`
   left: 0;
   display: flex;
   flex-direction: column;
-  @media(max-width: ${SP_BREAK_POINT}) {
+  @media(max-width: ${Values.SP_BREAK_POINT}) {
     min-width: 0;
     max-width: 100%;
     position: relative;
@@ -97,7 +92,7 @@ const Contact = Styled.span`
 `;
 
 const NavList = Styled.div`
-  @media(max-width: ${SP_BREAK_POINT}) {
+  @media(max-width: ${Values.SP_BREAK_POINT}) {
     display: flex;
     margin: 0.3rem;
   }
@@ -106,15 +101,15 @@ const NavList = Styled.div`
 const NavItem = Styled.div`
   flex: 1;
   padding: 6px;
-  background-color: ${({ active }) => (active ? "#505156" : "#FFF")};
+  background-color: ${({ active }) => (active ? Colors.font.primary : "#FFF")};
   border-radius: 1px;
   position: relative;
   padding-left: 30px;
   margin-bottom: 1em;
-  color: ${({ active }) => (active ? "#FFF" : "#505156")}
+  color: ${({ active }) => (active ? "#FFF" : Colors.font.primary)}
   transition-duration: 0.5s;
   cursor: ${({ active }) => (active ? "normal" : "pointer")};
-  @media(max-width: ${SP_BREAK_POINT}) {
+  @media(max-width: ${Values.SP_BREAK_POINT}) {
     margin: 0.3rem;
   }
   &:before {
@@ -125,7 +120,8 @@ const NavItem = Styled.div`
     height: 12px;
     top: 10px;
     left: 10px;
-    background-color: ${({ active }) => (active ? "#FFF" : "#505156")};
+    background-color: ${({ active }) =>
+      active ? "#FFF" : Colors.font.primary};
     border-radius: 1px;
   };
   &:hover {
@@ -137,72 +133,13 @@ const ContentArea = Styled.div`
   margin-left: 220px;
   flex: 1;
   min-height: 90vh;
-  @media(max-width: ${SP_BREAK_POINT}) {
+  @media(max-width: ${Values.SP_BREAK_POINT}) {
     margin-left: 0;
   }
 `;
 
 const SectionTitle = Styled.h1`
   margin-bottom: 0.5em;
-`;
-
-const BlogList = Styled.ul`
-  list-style-type: none;
-  padding: 0;
-`;
-
-const BlogPostKeyFrames = keyframes`
-  from {
-    opacity: 0;
-    margin-top: 6px;
-  }
-
-  to {
-    opacity: 1;
-    margin-top: 0;
-  }
-`;
-
-const BlogPost = Styled.article.attrs({
-  className: "blog-post"
-})`
-  padding: 3em;
-  background-color: #FFF;
-  margin-bottom: 0.8em;
-  position: relative;
-  transition-duration: 0.5s;
-  overflow: hidden;
-  border-radius: 1px;
-  position: relative;
-  animation: ${BlogPostKeyFrames} 0.2s linear;
-  @media(max-width: ${SP_BREAK_POINT}) {
-    padding: 1.5em;
-  }
-`;
-
-const BlogTitle = Styled.h1`
-  font-size: 1.2em;
-  margin-left: 20px;
-  position: relative;
-  &:before {
-    content: '';
-    position: absolute;
-    width: 12px;
-    height: 12px;
-    top: 9px;
-    left: -20px;
-    background-color: #505156;
-    border-radius: 1px;
-  };
-`;
-
-const BlogBody = Styled.div`
-  margin-top: 1.5em;
-`;
-
-const UpdatedTime = Styled.time`
-  font-size: 0.8em;
-  margin-bottm: 3em;
 `;
 
 const Icons = Styled.div`
@@ -223,24 +160,27 @@ const Space = Styled.div`
 const Footer = Styled.footer`
   font-size: 0.5em;
   text-align: center;
-  margin-top: 3em;
   color: #505156;
+  padding: 1rem;
 `;
 
 export default class extends React.Component<void, State> {
   state: State = {
     blogs: [],
     others: [],
-    products: [],
-    page: "blogs"
+    products: []
   };
 
   componentDidMount() {
     this.fetchPageContents();
   }
 
+  componentWillReceiveProps() {
+    this.fetchPageContents();
+  }
+
   fetchPageContents() {
-    const { page } = this.state;
+    const { page } = this.props.url.query;
     switch (page) {
       default:
       case "blogs": {
@@ -259,7 +199,8 @@ export default class extends React.Component<void, State> {
   }
 
   pushRoutes(page: PageType) {
-    this.setState({ page });
+    const href = "/?page=" + page;
+    Router.push(href, href, { shallow: true });
   }
 
   renderNoContents() {
@@ -270,26 +211,7 @@ export default class extends React.Component<void, State> {
     const { blogs } = this.state;
     if (blogs.length === 0) return this.renderNoContents();
 
-    return (
-      <BlogList>
-        {blogs.map(s => (
-          <li key={s.id}>
-            <BlogPost>
-              <BlogTitle key={s.id}>{s.title}</BlogTitle>
-              <UpdatedTime>
-                {new Date(s.updated_at).toLocaleString()}
-              </UpdatedTime>
-              <BlogBody>
-                <ReactMarkdown
-                  source={s.body}
-                  renderers={{ code: CodeBlock, link: Link }}
-                />
-              </BlogBody>
-            </BlogPost>
-          </li>
-        ))}
-      </BlogList>
-    );
+    return <BlogList posts={blogs} />;
   }
 
   renderOthers() {
@@ -303,63 +225,65 @@ export default class extends React.Component<void, State> {
     const { products } = this.state;
     if (products.length === 0) return this.renderNoContents();
 
-    return products.map(p => <h2 key={p.id}>{p.title}</h2>);
+    return <ProductList products={products} />;
   }
 
   render() {
-    const { page } = this.state;
+    const { page = "blogs" } = this.props.url.query;
     return (
-      <Wrapper>
-        <Main>
-          <MenuArea>
-            <NavList>
-              <NavItem
-                onClick={() => this.pushRoutes("blogs")}
-                active={page === "blogs"}
-              >
-                Posts
-              </NavItem>
-              <NavItem
-                onClick={() => this.pushRoutes("products")}
-                active={page === "products"}
-              >
-                Products
-              </NavItem>
-              <NavItem
-                onClick={() => this.pushRoutes("others")}
-                active={page === "others"}
-              >
-                Others
-              </NavItem>
-            </NavList>
-            <ProfileWrapper>
-              <Icon />
-              <ProfileName>Ryohlan</ProfileName>
-              <Skills>
-                iOS/Androd Apps,<br /> Web front-end developer, Web Designer
-              </Skills>
-              <Contact>Contact me: sabure.app[at]gmail.com</Contact>
-              <Icons>
-                <IconWrapper href={Links.gh}>
-                  <GithubIcon color="#505156" size={24} />
-                </IconWrapper>
-                <IconWrapper href={Links.tw}>
-                  <TwitterIcon color="#505156" size={24} />
-                </IconWrapper>
-                <IconWrapper href={Links.fb}>
-                  <FacebookIcon color="#505156" size={23} />
-                </IconWrapper>
-              </Icons>
-            </ProfileWrapper>
-          </MenuArea>
-          <ContentArea>
-            {page === "blogs" && this.renderBlogs()}
-            {page === "others" && this.renderOthers()}
-            {page === "products" && this.renderProducts()}
-          </ContentArea>
-        </Main>
+      <React.Fragment>
+        <Wrapper>
+          <Main>
+            <MenuArea>
+              <NavList>
+                <NavItem
+                  onClick={() => this.pushRoutes("blogs")}
+                  active={page === "blogs"}
+                >
+                  Posts
+                </NavItem>
+                <NavItem
+                  onClick={() => this.pushRoutes("products")}
+                  active={page === "products"}
+                >
+                  Products
+                </NavItem>
+                <NavItem
+                  onClick={() => this.pushRoutes("others")}
+                  active={page === "others"}
+                >
+                  Others
+                </NavItem>
+              </NavList>
+              <ProfileWrapper>
+                <Icon />
+                <ProfileName>Ryohlan</ProfileName>
+                <Skills>
+                  iOS/Androd Apps,<br /> Web front-end developer, Web Designer
+                </Skills>
+                <Contact>Contact me: sabure.app[at]gmail.com</Contact>
+                <Icons>
+                  <IconWrapper href={Values.Links.gh}>
+                    <GithubIcon color={Colors.font.primary} size={24} />
+                  </IconWrapper>
+                  <IconWrapper href={Values.Links.tw}>
+                    <TwitterIcon color={Colors.font.primary} size={24} />
+                  </IconWrapper>
+                  <IconWrapper href={Values.Links.fb}>
+                    <FacebookIcon color={Colors.font.primary} size={23} />
+                  </IconWrapper>
+                </Icons>
+              </ProfileWrapper>
+            </MenuArea>
+            <ContentArea>
+              {page === "blogs" && this.renderBlogs()}
+              {page === "others" && this.renderOthers()}
+              {page === "products" && this.renderProducts()}
+            </ContentArea>
+          </Main>
+        </Wrapper>
         <Footer>powered by Github Pages + Nextjs</Footer>
-      </Wrapper>
+      </React.Fragment>
     );
   }
 }

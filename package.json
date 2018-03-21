@@ -7,7 +7,7 @@
     "dev": "next",
     "build": "next build && next export",
     "start": "next start",
-    "deploy": "npm run build && git subtree push --prefix out/ origin master"
+    "deploy": "git subtree push --prefix out/ origin master"
   },
   "repository": {
     "type": "git",
@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/ryohlan/ryohlan.github.io#readme",
   "dependencies": {
+    "color": "^3.0.0",
     "highlight.js": "^9.12.0",
     "next": "^5.0.0",
     "react": "^16.2.0",
