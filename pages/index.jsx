@@ -172,7 +172,7 @@ export default class extends React.Component<void, State> {
   };
 
   getPageQuery({ asPath, query }) {
-    return query.page || asPath.replace(/.*\/?page=/, "") || "blogs";
+    return query.page || asPath.replace(/(\/|.*\/?page=)/, "") || "blogs";
   }
 
   componentDidMount() {
