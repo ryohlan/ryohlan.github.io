@@ -27,7 +27,16 @@ export default ({ others }: Props) => (
       <SectionTitle>Slides</SectionTitle>
       {others
         .filter(s => s.labels.find(s => s.name === "Slide"))
-        .map(s => <Slide key={s.id} slideMarkdowns={s.body.split("---")} />)}
+        .map(
+          s =>
+            console.log(s) || (
+              <Slide
+                key={s.id}
+                id={s.number}
+                slideMarkdowns={s.body.split("---")}
+              />
+            )
+        )}
     </section>
   </React.Fragment>
 );

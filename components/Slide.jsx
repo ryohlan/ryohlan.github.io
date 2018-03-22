@@ -6,12 +6,17 @@ import ArrowNext from "react-icons/lib/md/keyboard-arrow-right";
 import FullScreen from "react-icons/lib/md/fullscreen";
 import FullScreenExit from "react-icons/lib/md/fullscreen-exit";
 import { Colors } from "../Assets";
+import NewWindowIcon from "react-icons/lib/md/launch";
+import Router from "next/router";
+
 interface Props {
+  id: string;
   slideMarkdowns: string[];
 }
 
 interface State {
   slideIndex: number;
+  fullMode: boolean;
 }
 
 const FadeInOut = keyframes`
@@ -74,11 +79,12 @@ const Next = Styled(ArrowNext)`
   padding-left: 2rem;
 `;
 
-const FullScreenIcon = Styled(FullScreen)`
+const FullScreenIcon = Styled(NewWindowIcon)`
   position: absolute;
   padding: 1rem;
   top: 0;
   right: 0;
+  cursor: pointer;
 `;
 
 const SlideNumber = Styled.span`
@@ -93,7 +99,7 @@ export default class extends React.Component<Props, State> {
   };
 
   render() {
-    const { slideMarkdowns } = this.props;
+    const { slideMarkdowns, id } = this.props;
     const { slideIndex } = this.state;
     const isPrevActive = slideIndex > 0;
     const isNextActive = slideIndex < slideMarkdowns.length - 1;
@@ -108,6 +114,10 @@ export default class extends React.Component<Props, State> {
             <RNMarkdown source={slideMarkdowns[slideIndex]} />
           </Content>
         </ContentWrapepr>
+        <FullScreenIcon
+          size={18}
+          onClick={() => window.open(`/slides?id=${id}&page=1`)}
+        />
         <BottomNavigation>
           <Prev
             size={24}
