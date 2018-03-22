@@ -8,7 +8,7 @@ import ArrowPrev from "react-icons/lib/md/keyboard-arrow-left";
 import ArrowNext from "react-icons/lib/md/keyboard-arrow-right";
 import FullScreen from "react-icons/lib/md/fullscreen";
 import FullScreenExit from "react-icons/lib/md/fullscreen-exit";
-import { Colors } from "../../Assets";
+import { Colors, Values } from "../../Assets";
 
 interface Props {}
 
@@ -35,7 +35,7 @@ const Wrapper = Styled.main`
   width: 100%;
   height: 100vh;
   background-color: #FFF;
-  padding: 80px;
+  padding: 0 4rem;
   box-sizing: border-box;
   display: flex;
   align-items: center;
@@ -111,6 +111,8 @@ export default class extends React.Component<Props, State> {
   };
 
   parseQuery(asPath: string) {
+    if (!/id=\w+&page=\d+$/.test(asPath)) return {};
+
     const { id, page } = asPath
       .split("?")[1]
       .split("&")
@@ -173,14 +175,6 @@ export default class extends React.Component<Props, State> {
 
   render() {
     const { asPath } = this.props.url;
-    if (!/id=\w+&page=\d+$/.test(asPath)) {
-      return (
-        <Wrapper>
-          <div>Error</div>
-        </Wrapper>
-      );
-    }
-
     const { loading, slideMarkdowns, error, baseFontSize } = this.state;
     const { id, page } = this.parseQuery(asPath);
 
@@ -199,7 +193,14 @@ export default class extends React.Component<Props, State> {
     return (
       <React.Fragment>
         <Wrapper key={page}>
-          <style>{`html { font-size: ${baseFontSize};}`}</style>
+          <style>{`
+            html {
+              font-size: ${baseFontSize};
+            }
+            @media(max-width: ${Values.SP_BREAK_POINT}) {
+              html { font-size: 12px; }
+            }
+            `}</style>
           <MDWrapper key={page}>
             <ReactMarkdown
               source={slideMarkdowns[page - 1]}
