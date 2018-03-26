@@ -11,13 +11,10 @@ import ProductList from "../components/ProductList";
 import Menu from "../components/Menu";
 import OtherList from "../components/OtherList";
 
-type PageType = "blogs" | "others" | "products";
-
 interface State {
   blogs: Array<any>;
   others: Array<any>;
   products: Array<any>;
-  page: PageType;
 }
 
 const Wrapper = Styled.div`
@@ -77,7 +74,7 @@ export default class extends React.Component<void, State> {
   };
 
   getPageQuery({ asPath, query }) {
-    return query.page || asPath.split("?page=")[1] || "blogs";
+    return query.page || asPath.split("?page=")[1];
   }
 
   componentDidMount() {
@@ -107,9 +104,9 @@ export default class extends React.Component<void, State> {
     }
   }
 
-  pushRoutes(page: PageType) {
+  pushRoutes(page: string) {
     const href = "/?page=" + page;
-    Router.push(href, href, { shallow: true });
+    Router.push(href, `/${page}`, { shallow: true });
   }
 
   renderNoContents() {
@@ -143,7 +140,7 @@ export default class extends React.Component<void, State> {
       <React.Fragment>
         <Wrapper>
           <Main>
-            <MenuArea>
+            <MenuArea key={page}>
               <Menu page={page} onClickMenu={p => this.pushRoutes(p)} />
             </MenuArea>
             <ContentArea>
