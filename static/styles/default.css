@@ -7,7 +7,7 @@
 }
 
 html {
-  font-size: 14px;
+  font-size: 15px;
   color: #505156;
   font-family: "Source Code Pro", monospace;
   background-color: #f1f1f1;
@@ -30,9 +30,14 @@ html {
 
 .blog-post p {
   font-size: 1em;
-  line-height: 2rem;
-  margin: 0.3rem 0;
+  line-height: 2.3rem;
+  margin: 0.4rem 0;
   letter-spacing: 0.05em;
+}
+
+.blog-post img {
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  margin: 2rem;
 }
 
 pre code {
