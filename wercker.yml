@@ -5,6 +5,8 @@ build:
     - script:
         name: Deploy
         code: |
+          git config --global user.email "sunsunryohlan@gmail.com"
+          git config --global user.name "Ryohlan"
           git remote rm origin
           git remote add origin https://ryohlan:$GH_TOKEN@github.com/ryohlan/ryohlan.github.io.git
           npm run build
