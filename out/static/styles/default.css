@@ -3,6 +3,7 @@
 
 * {
   margin: 0;
+  word-break: break-word;
 }
 
 html {
@@ -43,6 +44,13 @@ pre code {
 
 p {
   word-wrap: break-word;
+}
+
+blockquote {
+  border-left: solid 3px #a8aab5;
+  padding-left: 1rem;
+  margin: 1rem 0;
+  color: #91939e;
 }
 
 .loader,
