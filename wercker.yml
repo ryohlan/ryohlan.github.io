@@ -9,6 +9,6 @@ build:
           git remote add origin https://ryohlan:$GH_TOKEN@github.com/ryohlan/ryohlan.github.io.git
           npm run build
           git add -A
-          git co -m "deploy from Wercker"
+          git commit -m "deploy from Wercker"
           git push origin source
           npm run deploy
