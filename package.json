@@ -7,8 +7,7 @@
     "dev": "next",
     "build": "next build && next export",
     "start": "next start",
-    "deploy": "git subtree push --prefix out/ origin master",
-    "git_push": "git push origin source && npm run deploy"
+    "deploy": "git subtree push --prefix out/ origin master"
   },
   "repository": {
     "type": "git",
