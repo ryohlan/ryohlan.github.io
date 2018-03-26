@@ -7,15 +7,15 @@
     "dev": "next",
     "build": "next build && next export",
     "start": "next start",
-    "deploy": "git subtree push --prefix out/ origin master"
+    "deploy": "git subtree push --prefix out/ origin master",
+    "git_push":
+      "npm run build && git add -A && git co --amend --no-edit && git push origin source && npm run deploy"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ryohlan/ryohlan.github.io.git"
   },
-  "keywords": [
-    "ryohlan"
-  ],
+  "keywords": ["ryohlan"],
   "author": "Ryohlan",
   "license": "ISC",
   "bugs": {
