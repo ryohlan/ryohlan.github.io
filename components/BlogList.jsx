@@ -78,7 +78,19 @@ export default ({ posts }: Props) => (
           <BlogBody>
             <ReactMarkdown
               source={s.body}
-              renderers={{ code: CodeBlock, link: Link }}
+              renderers={{
+                code: CodeBlock,
+                link: Link,
+                image: Styled.img`
+                  width: 300px;
+                  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+                  margin: 2rem;
+                  @media(max-width: ${Values.SP_BREAK_POINT}) {
+                    width: 90%;
+                    margin: 2rem 5%;
+                  }
+              `
+              }}
             />
           </BlogBody>
         </BlogPost>
