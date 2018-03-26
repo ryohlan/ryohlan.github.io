@@ -35,11 +35,6 @@ html {
   letter-spacing: 0.05em;
 }
 
-.blog-post img {
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-  margin: 2rem;
-}
-
 pre code {
   font-family: "Source Code Pro", monospace;
   font-weight: 100;
