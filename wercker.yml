@@ -8,5 +8,5 @@ build:
           env
           npm run build
           git remote rm origin
-          git remote add origin https://ryohlan:$GH_TOKEN@github.com:ryohlan/ryohlan.github.io.git
+          git remote add origin https://ryohlan:$GH_TOKEN@github.com/ryohlan/ryohlan.github.io.git
           git subtree push --prefix out/ origin master
