@@ -13,4 +13,5 @@ build:
           git add -A
           git commit -m "deploy from Wercker"
           git push origin source
+          git push origin :master
           npm run deploy
