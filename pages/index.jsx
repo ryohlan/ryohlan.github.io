@@ -140,7 +140,7 @@ export default class extends React.Component<void, State> {
       <React.Fragment>
         <Wrapper>
           <Main>
-            <MenuArea key={page}>
+            <MenuArea>
               <Menu page={page} onClickMenu={p => this.pushRoutes(p)} />
             </MenuArea>
             <ContentArea>
