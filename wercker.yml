@@ -15,3 +15,6 @@ build:
           git push origin source
           git push origin :master
           npm run deploy
+    - script:
+      name: Run lighthouse
+      code: npm run lh
