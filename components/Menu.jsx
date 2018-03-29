@@ -57,6 +57,7 @@ const Icons = Styled.div`
 const IconWrapper = Styled.div`
   margin: 0 6px;
   display: block;
+  cursor: pointer;
 `;
 
 const Space = Styled.div`
@@ -123,10 +124,10 @@ export default ({ page, onClickMenu }: Props) => (
         <IconWrapper onClick={() => window.open(Values.Links.gh)}>
           <GithubIcon color={Colors.font.primary} size={24} />
         </IconWrapper>
-        <IconWrapper href={Values.Links.tw}>
+        <IconWrapper onClick={() => window.open(Values.Links.tw)}>
           <TwitterIcon color={Colors.font.primary} size={24} />
         </IconWrapper>
-        <IconWrapper href={Values.Links.fb}>
+        <IconWrapper onClick={() => window.open(Values.Links.fb)}>
           <FacebookIcon color={Colors.font.primary} size={23} />
         </IconWrapper>
       </Icons>
