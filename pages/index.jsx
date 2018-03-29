@@ -27,8 +27,6 @@ const Wrapper = Styled.div`
 `;
 
 const Main = Styled.main`
-  display: flex;
-  position: relative;
   @media(max-width: ${Values.SP_BREAK_POINT}) {
     display: block;
   }
@@ -37,16 +35,17 @@ const Main = Styled.main`
 const MenuArea = Styled.nav`
   min-width: 200px;
   max-width: 200px;
-  position: absolute;
-  top: 0;
-  left: 0;
+  position: sticky;
+  top: 2rem;
+  float: left;
   display: flex;
   flex-direction: column;
   @media(max-width: ${Values.SP_BREAK_POINT}) {
     min-width: 0;
     max-width: 100%;
-    position: relative;
+    position: static;
     flex-direction: column-reverse;
+    float: none;
   }
 `;
 
