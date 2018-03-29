@@ -8,14 +8,15 @@
     "build": "next build && next export",
     "start": "next start",
     "deploy": "git subtree push --prefix out/ origin master",
-    "lh":
-      "lighthouse https://ryohlan.github.io/ --output=json --output-path=./report.json"
+    "lh": "lighthouse https://ryohlan.github.io/ --output=json --output-path=./report.json"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ryohlan/ryohlan.github.io.git"
   },
-  "keywords": ["ryohlan"],
+  "keywords": [
+    "ryohlan"
+  ],
   "author": "Ryohlan",
   "license": "ISC",
   "bugs": {
@@ -25,6 +26,7 @@
   "dependencies": {
     "color": "^3.0.0",
     "highlight.js": "^9.12.0",
+    "lighthouse": "^2.9.4",
     "next": "^5.0.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
