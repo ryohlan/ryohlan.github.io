@@ -1,0 +1,15 @@
+{
+  "short_name": "Ryohlan",
+  "name": "Ryohlan's portfolio",
+  "icons": [
+    {
+      "src": "/static/images/icon.png",
+      "sizes": "200x200",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#FFF",
+  "Theme_color": "#505156",
+  "display": "standalone"
+}

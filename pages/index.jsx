@@ -106,7 +106,7 @@ export default class extends React.Component<void, State> {
 
   pushRoutes(page: string) {
     const href = "/?menu=" + page;
-    Router.push(href, href, { shallow: true });
+    Router.push(href, `/${page}`, { shallow: true });
   }
 
   renderNoContents() {

@@ -54,7 +54,7 @@ const Icons = Styled.div`
   margin-top: 1em;
 `;
 
-const IconWrapper = Styled.a.attrs({ target: "_blank", rel: "noopener" })`
+const IconWrapper = Styled.div`
   margin: 0 6px;
   display: block;
 `;
@@ -120,7 +120,7 @@ export default ({ page, onClickMenu }: Props) => (
       </Skills>
       <Contact>Contact me: sabure.app[at]gmail.com</Contact>
       <Icons>
-        <IconWrapper href={Values.Links.gh}>
+        <IconWrapper onClick={() => window.open(Values.Links.gh)}>
           <GithubIcon color={Colors.font.primary} size={24} />
         </IconWrapper>
         <IconWrapper href={Values.Links.tw}>
