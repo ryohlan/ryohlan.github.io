@@ -1,10 +1,10 @@
 module.exports = {
   exportPathMap: function() {
     return {
-      "/": { page: "/", query: { page: "blogs" } },
-      "/blogs": { page: "/", query: { page: "blogs" } },
-      "/products": { page: "/", query: { page: "products" } },
-      "/others": { page: "/", query: { page: "others" } },
+      "/": { page: "/", query: { menu: "blogs" } },
+      "/?menu=blogs": { page: "/", query: { menu: "blogs" } },
+      "/?menu=products": { page: "/", query: { menu: "products" } },
+      "/?menu=others": { page: "/", query: { menu: "others" } },
       "/slides": { page: "/slides" }
     };
   }

@@ -60,7 +60,7 @@ const renderSPApp = markdown => (
         font-size: 0.8rem;
         color: ${Colors.font.secondary};
       `,
-      link: Styled.a.attrs({ target: "_blank" })`
+      link: Styled.a.attrs({ target: "_blank", rel: "noopener" })`
         color: ${Colors.font.secondary};
         margin: 0.5rem 0.2rem 0;
         float: right;

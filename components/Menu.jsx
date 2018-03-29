@@ -54,7 +54,7 @@ const Icons = Styled.div`
   margin-top: 1em;
 `;
 
-const IconWrapper = Styled.a.attrs({ target: "_blank" })`
+const IconWrapper = Styled.a.attrs({ target: "_blank", rel: "noopener" })`
   margin: 0 6px;
   display: block;
 `;
@@ -73,7 +73,8 @@ const ProfileWrapper = Styled.section`
 `;
 
 const Icon = Styled.img.attrs({
-  src: "/static/images/icon.png"
+  src: "/static/images/icon.png",
+  alt: "Icon"
 })`
   width: 80px;
   height: 80px;

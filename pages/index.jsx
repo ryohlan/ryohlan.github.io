@@ -74,7 +74,7 @@ export default class extends React.Component<void, State> {
   };
 
   getPageQuery({ asPath, query }) {
-    return query.page || asPath.split("?page=")[1];
+    return query.menu || "blogs";
   }
 
   componentDidMount() {
@@ -105,8 +105,8 @@ export default class extends React.Component<void, State> {
   }
 
   pushRoutes(page: string) {
-    const href = "/?page=" + page;
-    Router.push(href, `/${page}`, { shallow: true });
+    const href = "/?menu=" + page;
+    Router.push(href, href, { shallow: true });
   }
 
   renderNoContents() {

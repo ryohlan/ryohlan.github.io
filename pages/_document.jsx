@@ -13,8 +13,12 @@ export default class extends Document {
 
   render() {
     return (
-      <html>
+      <html lang="ja">
         <Head>
+          <meta
+            name="Description"
+            content="This is Ryohlan's Portfolio. I'm interested in iOS/Android app development, React SPA, React Native and more"
+          />
           <meta property="og:title" content="Ryohlan's Portfolio" />
           <meta property="og:type" content="website" />
           <meta
@@ -39,6 +43,7 @@ export default class extends Document {
             }}
           />
           <title>Ryohlan's Portfolio</title>
+          <link rel="manifest" href="/static/manifest.json" />
           <link
             rel="stylesheet"
             href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/androidstudio.min.css"

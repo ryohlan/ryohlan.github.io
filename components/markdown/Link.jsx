@@ -7,7 +7,7 @@ export default class extends React.Component {
     const { href } = this.props;
     return (
       <React.Fragment>
-        <a href={href} target="_blank">
+        <a href={href} target="_blank" rel="noopener">
           {href}
         </a>
       </React.Fragment>

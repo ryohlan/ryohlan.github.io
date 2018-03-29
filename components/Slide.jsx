@@ -110,7 +110,7 @@ export default class extends React.Component<Props, State> {
         }}
       >
         <ContentWrapepr>
-          <Content key={slideMarkdowns[slideIndex]}>
+          <Content>
             <RNMarkdown source={slideMarkdowns[slideIndex]} />
           </Content>
         </ContentWrapepr>
