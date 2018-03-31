@@ -17,12 +17,12 @@ const BlogList = Styled.ul`
 const FadeInOut = keyframes`
   from {
     opacity: 0;
-    margin-top: 6px;
+    transform: translateY(6px);
   }
 
   to {
     opacity: 1;
-    margin-top: 0;
+    transform: translateY(0);
   }
 `;
 

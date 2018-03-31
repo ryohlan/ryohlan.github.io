@@ -10,12 +10,12 @@ interface Props {
 const FadeInOut = keyframes`
   0% {
     opacity: 0;
-    margin-top: 6px;
+    transform: translateY(6px);
   }
 
   100% {
     opacity: 1;
-    margin-top: 2px;
+    transform: translateY(2px);
   }
 `;
 
