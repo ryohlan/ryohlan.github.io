@@ -3,13 +3,13 @@
   "name": "Ryohlan's portfolio",
   "icons": [
     {
-      "src": "/static/images/icon.png",
-      "sizes": "200x200",
+      "src": "/static/images/512.png",
+      "sizes": "512x512",
       "type": "image/png"
     }
   ],
   "start_url": "/",
   "background_color": "#FFF",
-  "Theme_color": "#505156",
+  "theme_color": "#505156",
   "display": "standalone"
 }

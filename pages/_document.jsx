@@ -31,6 +31,7 @@ export default class extends Document {
             content="https://ryohlan.github.io/static/images/og-image.png"
           />
           <meta property="og:site_name" content="Ryohlan's Portfolio" />
+          <meta name="theme-color" content="#505156" />
           <script
             dangerouslySetInnerHTML={{
               __html: `
@@ -44,6 +45,7 @@ export default class extends Document {
           />
           <title>Ryohlan's Portfolio</title>
           <link rel="manifest" href="/static/manifest.json" />
+
           <link
             rel="stylesheet"
             href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/androidstudio.min.css"

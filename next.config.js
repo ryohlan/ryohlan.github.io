@@ -7,5 +7,19 @@ module.exports = {
       "/others": { page: "/", query: { menu: "others" } },
       "/slides": { page: "/slides" }
     };
+  },
+  webpack: cfg => {
+    const originalEntry = cfg.entry;
+    cfg.entry = async () => {
+      const entries = await originalEntry();
+
+      if (entries["main.js"]) {
+        entries["main.js"].unshift("./client");
+      }
+
+      return entries;
+    };
+
+    return cfg;
   }
 };
