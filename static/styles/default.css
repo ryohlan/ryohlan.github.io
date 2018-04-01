@@ -13,6 +13,10 @@ html {
   background-color: #f1f1f1;
 }
 
+del a {
+  text-decoration: line-through !important;
+}
+
 .blog-post {
   font-family: "Noto Serif", serif;
 }
