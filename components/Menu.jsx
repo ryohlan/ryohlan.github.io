@@ -10,6 +10,55 @@ interface Props {
   onClickMenu: (page: string) => void;
 }
 
+export default class extends React.PureComponent<Props> {
+  render() {
+    const { page, onClickMenu } = this.props;
+    return (
+      <React.Fragment>
+        <NavList>
+          <NavItem
+            onClick={() => onClickMenu("blogs")}
+            active={page === "blogs"}
+          >
+            Posts
+          </NavItem>
+          <NavItem
+            onClick={() => onClickMenu("products")}
+            active={page === "products"}
+          >
+            Products
+          </NavItem>
+          <NavItem
+            onClick={() => onClickMenu("others")}
+            active={page === "others"}
+          >
+            Others
+          </NavItem>
+        </NavList>
+        <ProfileWrapper>
+          <Icon />
+          <ProfileName>Ryohlan</ProfileName>
+          <Skills>
+            iOS/Androd Apps,<br /> Web front-end developer, Web Designer
+          </Skills>
+          <Contact>Contact me: sabure.app[at]gmail.com</Contact>
+          <Icons>
+            <IconWrapper onClick={() => window.open(Values.Links.gh)}>
+              <GithubIcon color={Colors.font.primary} size={24} />
+            </IconWrapper>
+            <IconWrapper onClick={() => window.open(Values.Links.tw)}>
+              <TwitterIcon color={Colors.font.primary} size={24} />
+            </IconWrapper>
+            <IconWrapper onClick={() => window.open(Values.Links.fb)}>
+              <FacebookIcon color={Colors.font.primary} size={23} />
+            </IconWrapper>
+          </Icons>
+        </ProfileWrapper>
+      </React.Fragment>
+    );
+  }
+}
+
 const NavList = Styled.div`
   @media(max-width: ${Values.SP_BREAK_POINT}) {
     display: flex;
@@ -96,41 +145,3 @@ const Contact = Styled.span`
   text-align: center;
   margin-top: 1rem;
 `;
-
-export default ({ page, onClickMenu }: Props) => (
-  <React.Fragment>
-    <NavList>
-      <NavItem onClick={() => onClickMenu("blogs")} active={page === "blogs"}>
-        Posts
-      </NavItem>
-      <NavItem
-        onClick={() => onClickMenu("products")}
-        active={page === "products"}
-      >
-        Products
-      </NavItem>
-      <NavItem onClick={() => onClickMenu("others")} active={page === "others"}>
-        Others
-      </NavItem>
-    </NavList>
-    <ProfileWrapper>
-      <Icon />
-      <ProfileName>Ryohlan</ProfileName>
-      <Skills>
-        iOS/Androd Apps,<br /> Web front-end developer, Web Designer
-      </Skills>
-      <Contact>Contact me: sabure.app[at]gmail.com</Contact>
-      <Icons>
-        <IconWrapper onClick={() => window.open(Values.Links.gh)}>
-          <GithubIcon color={Colors.font.primary} size={24} />
-        </IconWrapper>
-        <IconWrapper onClick={() => window.open(Values.Links.tw)}>
-          <TwitterIcon color={Colors.font.primary} size={24} />
-        </IconWrapper>
-        <IconWrapper onClick={() => window.open(Values.Links.fb)}>
-          <FacebookIcon color={Colors.font.primary} size={23} />
-        </IconWrapper>
-      </Icons>
-    </ProfileWrapper>
-  </React.Fragment>
-);

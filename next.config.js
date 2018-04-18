@@ -1,3 +1,5 @@
+const path = require("path");
+
 module.exports = {
   exportPathMap: function() {
     return {
@@ -16,10 +18,9 @@ module.exports = {
       if (entries["main.js"]) {
         entries["main.js"].unshift("./client");
       }
-
+      1;
       return entries;
     };
-
     return cfg;
   }
 };

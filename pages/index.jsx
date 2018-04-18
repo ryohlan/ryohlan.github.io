@@ -140,7 +140,7 @@ export default class extends React.Component<void, State> {
         <Wrapper>
           <Main>
             <MenuArea>
-              <Menu page={page} onClickMenu={p => this.pushRoutes(p)} />
+              <Menu page={page} onClickMenu={this.pushRoutes} />
             </MenuArea>
             <ContentArea>
               {page === "blogs" && this.renderBlogs()}
