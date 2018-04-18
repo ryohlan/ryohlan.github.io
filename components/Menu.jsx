@@ -68,7 +68,7 @@ const NavList = Styled.div`
 
 const NavItem = Styled.div`
   flex: 1;
-  padding: 6px;
+  padding: 3px;
   background-color: ${({ active }) => (active ? Colors.font.primary : "#FFF")};
   border-radius: 1px;
   position: relative;
