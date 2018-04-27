@@ -65,19 +65,39 @@ const OtherWrapper = Styled.div`
   }
 `;
 
+const ResponsiveSlideWrapper = Styled.div`
+  flex: 1;
+  max-width: 50%;
+  margin: 1px;
+
+  @media(max-width: ${Values.SP_BREAK_POINT}) {
+    min-width: 100%;
+    margin: 0;
+    margin-bottom: 6px;
+  }
+`;
+
+const SlidesWrapper = Styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;
+
 export default ({ others }: Props) => (
   <React.Fragment>
     <section>
       <SectionTitle>Slides</SectionTitle>
-      {others
-        .filter(s => s.labels.find(s => s.name === "Slide"))
-        .map(s => (
-          <Slide
-            key={s.id}
-            id={s.number}
-            slideMarkdowns={s.body.split("---")}
-          />
+      <SlidesWrapper>
+        {others.filter(s => s.labels.find(s => s.name === "Slide")).map(s => (
+          <ResponsiveSlideWrapper>
+            <Slide
+              key={s.id}
+              id={s.number}
+              title={s.title}
+              slideMarkdowns={s.body.split("---")}
+            />
+          </ResponsiveSlideWrapper>
         ))}
+      </SlidesWrapper>
     </section>
     <section style={{ marginTop: "1rem" }}>
       <SectionTitle>Others</SectionTitle>

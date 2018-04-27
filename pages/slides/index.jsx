@@ -200,15 +200,26 @@ export default class extends React.Component<Props, State> {
             @media(max-width: ${Values.SP_BREAK_POINT}) {
               html { font-size: 12px; }
             }
+            pre {
+              border: solid 1px #DDD;
+              padding: 2em;
+              border-radius: 7px;
+              background-color: #505156;
+              color: rgba(255,255,255,.9);
+            }
             `}</style>
           <MDWrapper key={page}>
             <ReactMarkdown
               source={slideMarkdowns[page - 1]}
               renderers={{
                 listItem: Styled.li`
-              font-size: 1.5rem;
-              margin: 0.6rem 0;
-            `
+                  font-size: 1.5rem;
+                  margin: 0.6rem 0;
+                `,
+                image: Styled.img`
+                  max-width: 100vw;
+                  max-height: 300px;
+                `
               }}
             />
           </MDWrapper>

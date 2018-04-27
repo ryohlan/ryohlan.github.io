@@ -8,9 +8,11 @@ import FullScreenExit from "react-icons/lib/md/fullscreen-exit";
 import { Colors } from "../Assets";
 import NewWindowIcon from "react-icons/lib/md/launch";
 import Router from "next/router";
+import { Values } from "../Assets";
 
 interface Props {
   id: string;
+  title: string;
   slideMarkdowns: string[];
 }
 
@@ -33,12 +35,12 @@ const FadeInOut = keyframes`
 
 const Section = Styled.section`
   width: 100%;
-  height: 100%;
-  min-height: 240px;
+  height: 300px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   position: relative;
+  overflow: auto;
 `;
 
 const ContentWrapepr = Styled.div`
@@ -92,6 +94,16 @@ const SlideNumber = Styled.span`
   color: ${Colors.font.secondary};
 `;
 
+const SlideTitle = Styled.h1`
+  font-size: 0.8rem;
+  color: #FFF;
+  padding: 0.5em 1em;
+  background-color: rgba(0, 0, 0, .7);
+  position: absolute;
+  top: 0;
+  left: 0;
+`;
+
 export default class extends React.Component<Props, State> {
   sectionRef = undefined;
   state: State = {
@@ -99,7 +111,7 @@ export default class extends React.Component<Props, State> {
   };
 
   render() {
-    const { slideMarkdowns, id } = this.props;
+    const { slideMarkdowns, id, title } = this.props;
     const { slideIndex } = this.state;
     const isPrevActive = slideIndex > 0;
     const isNextActive = slideIndex < slideMarkdowns.length - 1;
@@ -109,9 +121,24 @@ export default class extends React.Component<Props, State> {
           this.sectionRef = ref;
         }}
       >
+        <SlideTitle>{title}</SlideTitle>
         <ContentWrapepr>
           <Content>
-            <RNMarkdown source={slideMarkdowns[slideIndex]} />
+            <RNMarkdown
+              source={slideMarkdowns[slideIndex]}
+              renderers={{
+                image: Styled.img`
+                  max-width: 300px;
+                  max-height: 300px;
+                  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+                  margin: 2rem;
+                  @media(max-width: ${Values.SP_BREAK_POINT}) {
+                    margin: 2rem 5%;
+                    max-height: none;
+                  }
+                `
+              }}
+            />
           </Content>
         </ContentWrapepr>
         <FullScreenIcon
