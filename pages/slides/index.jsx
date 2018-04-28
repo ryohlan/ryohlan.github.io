@@ -32,7 +32,7 @@ const FadeInOut = keyframes`
 `;
 
 const Wrapper = Styled.main`
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   background-color: #FFF;
   padding: 0 4rem;
@@ -194,6 +194,9 @@ export default class extends React.Component<Props, State> {
       <React.Fragment>
         <Wrapper key={page}>
           <style>{`
+            html, body {
+              overflow: hidden;
+            }
             html {
               font-size: ${baseFontSize};
             }
@@ -208,7 +211,7 @@ export default class extends React.Component<Props, State> {
               color: rgba(255,255,255,.9);
             }
             `}</style>
-          <MDWrapper key={page}>
+          <MDWrapper>
             <ReactMarkdown
               source={slideMarkdowns[page - 1]}
               renderers={{
