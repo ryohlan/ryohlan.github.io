@@ -24,7 +24,7 @@ export default class extends React.Component<Props, State> {
     slideMarkdowns: [],
     error: null,
     loading: true,
-    baseFontSize: "24px"
+    baseFontSize: "16px"
   };
 
   parseQuery(asPath: string) {
@@ -126,18 +126,35 @@ export default class extends React.Component<Props, State> {
               border-radius: 7px;
               background-color: #505156;
               color: rgba(255,255,255,.9);
+              width: 80%;
+              margin: 2em 10%;
+              font-size: 0.8rem;
+              max-height: 300px;
+              overflow: auto;
+            }
+            h1 {
+              text-align: center;
+              margin: 0.5em 0;
+              font-size: 2.2rem;
             }
             `}</style>
           <MDWrapper>
             <ReactMarkdown
               source={slideMarkdowns[page - 1]}
               renderers={{
+                root: Styled.section`
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                  padding: 0 3em;
+                  box-sizing: border-box;
+                  width: 100%;
+                `,
                 listItem: Styled.li`
                   font-size: 1.5rem;
-                  margin: 0.6rem 0;
+                  margin: 0;
                 `,
                 image: Styled.img`
-                  max-width: 100vw;
                   max-height: 300px;
                 `
               }}

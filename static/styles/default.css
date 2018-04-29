@@ -39,16 +39,19 @@ del a {
   margin: 1.2rem 0;
 }
 
+pre {
+  padding: 1em;
+}
+
 code {
   font-family: "Source Code Pro", monospace;
   font-weight: 100;
-  padding: 1.5rem !important;
   background-color: transparent !important;
 }
 
 code * {
   letter-spacing: 0.01em;
-  line-height: 1.1em;
+  line-height: 1em;
 }
 
 p {
