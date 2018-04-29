@@ -17,6 +17,72 @@ interface State {
   products: Array<any>;
 }
 
+export default class extends React.Component<void, State> {
+  state: State = {
+    blogs: [],
+    others: [],
+    products: []
+  };
+
+  getPageQuery({ asPath, query }) {
+    return query.menu || "blogs";
+  }
+
+  componentDidMount() {
+    this.fetchPageContents(this.props.url);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.fetchPageContents(nextProps.url);
+  }
+
+  fetchPageContents(url) {
+    const page = this.getPageQuery(url);
+    switch (page) {
+      default:
+      case "blogs": {
+        API.getBlogs().then(blogs => this.setState({ blogs }));
+        break;
+      }
+      case "others": {
+        API.getOthers().then(others => this.setState({ others }));
+        break;
+      }
+      case "products": {
+        API.getProducts().then(products => this.setState({ products }));
+        break;
+      }
+    }
+  }
+
+  pushRoutes(page: string) {
+    const href = "/?menu=" + page;
+    Router.replace(href, `/${page}`, { shallow: true });
+  }
+
+  render() {
+    const page = this.getPageQuery(this.props.url);
+    const { blogs, others, products } = this.state;
+    return (
+      <React.Fragment>
+        <Wrapper>
+          <Main>
+            <MenuArea>
+              <Menu page={page} onClickMenu={this.pushRoutes} />
+            </MenuArea>
+            <ContentArea>
+              {page === "blogs" && <BlogList posts={blogs} />}
+              {page === "products" && <ProductList products={products} />}
+              {page === "others" && <OtherList others={others} />}
+            </ContentArea>
+          </Main>
+        </Wrapper>
+        <Footer>powered by Github Pages + Nextjs</Footer>
+      </React.Fragment>
+    );
+  }
+}
+
 const Wrapper = Styled.div`
   min-height: 100vh;
   padding: 2rem 2rem 0;
@@ -64,93 +130,3 @@ const Footer = Styled.footer`
   color: #505156;
   padding: 1rem;
 `;
-
-export default class extends React.Component<void, State> {
-  state: State = {
-    blogs: [],
-    others: [],
-    products: []
-  };
-
-  getPageQuery({ asPath, query }) {
-    return query.menu || "blogs";
-  }
-
-  componentDidMount() {
-    this.fetchPageContents(this.props.url);
-  }
-
-  componentWillReceiveProps(nextProps) {
-    this.fetchPageContents(nextProps.url);
-  }
-
-  fetchPageContents(url) {
-    const page = this.getPageQuery(url);
-    switch (page) {
-      default:
-      case "blogs": {
-        API.getBlogs().then(blogs => this.setState({ blogs }));
-        break;
-      }
-      case "others": {
-        API.getOthers().then(others => this.setState({ others }));
-        break;
-      }
-      case "products": {
-        API.getProducts().then(products => this.setState({ products }));
-        break;
-      }
-    }
-  }
-
-  pushRoutes(page: string) {
-    const href = "/?menu=" + page;
-    Router.replace(href, `/${page}`, { shallow: true });
-  }
-
-  renderNoContents() {
-    return <p style={{ padding: "3em", textAlign: "center" }}>No contents</p>;
-  }
-
-  renderBlogs() {
-    const { blogs } = this.state;
-    if (blogs.length === 0) return this.renderNoContents();
-
-    return <BlogList posts={blogs} />;
-  }
-
-  renderOthers() {
-    const { others } = this.state;
-    if (others.length === 0) return this.renderNoContents();
-
-    return <OtherList others={others} />;
-  }
-
-  renderProducts() {
-    const { products } = this.state;
-    if (products.length === 0) return this.renderNoContents();
-
-    return <ProductList products={products} />;
-  }
-
-  render() {
-    const page = this.getPageQuery(this.props.url);
-    return (
-      <React.Fragment>
-        <Wrapper>
-          <Main>
-            <MenuArea>
-              <Menu page={page} onClickMenu={this.pushRoutes} />
-            </MenuArea>
-            <ContentArea>
-              {page === "blogs" && this.renderBlogs()}
-              {page === "products" && this.renderProducts()}
-              {page === "others" && this.renderOthers()}
-            </ContentArea>
-          </Main>
-        </Wrapper>
-        <Footer>powered by Github Pages + Nextjs</Footer>
-      </React.Fragment>
-    );
-  }
-}

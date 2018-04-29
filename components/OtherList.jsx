@@ -3,10 +3,42 @@ import Styled from "styled-components";
 import { Colors, Values } from "../Assets";
 import Slide from "./Slide";
 import ReactMarkdown from "react-markdown";
+import NoContents from "./NoContens";
 
 interface Props {
   others: Array<any>;
 }
+
+export default ({ others }: Props) =>
+  others.length > 0 ? (
+    <React.Fragment>
+      <section>
+        <SectionTitle>Slides</SectionTitle>
+        <SlidesWrapper>
+          {others.filter(s => s.labels.find(s => s.name === "Slide")).map(s => (
+            <ResponsiveSlideWrapper>
+              <Slide
+                key={s.id}
+                id={s.number}
+                title={s.title}
+                slideMarkdowns={s.body.split("---")}
+              />
+            </ResponsiveSlideWrapper>
+          ))}
+        </SlidesWrapper>
+      </section>
+      <section style={{ marginTop: "1rem" }}>
+        <SectionTitle>Others</SectionTitle>
+        {others
+          .filter(s => !s.labels.find(s => s.name === "Slide"))
+          .map(s => (
+            <OtherWrapper key={s.id}>{renderUdemy(s.body)}</OtherWrapper>
+          ))}
+      </section>
+    </React.Fragment>
+  ) : (
+    <NoContents />
+  );
 
 const SectionTitle = Styled.h1`
   font-size: 1.2rem;
@@ -81,31 +113,3 @@ const SlidesWrapper = Styled.div`
   display: flex;
   flex-wrap: wrap;
 `;
-
-export default ({ others }: Props) => (
-  <React.Fragment>
-    <section>
-      <SectionTitle>Slides</SectionTitle>
-      <SlidesWrapper>
-        {others.filter(s => s.labels.find(s => s.name === "Slide")).map(s => (
-          <ResponsiveSlideWrapper>
-            <Slide
-              key={s.id}
-              id={s.number}
-              title={s.title}
-              slideMarkdowns={s.body.split("---")}
-            />
-          </ResponsiveSlideWrapper>
-        ))}
-      </SlidesWrapper>
-    </section>
-    <section style={{ marginTop: "1rem" }}>
-      <SectionTitle>Others</SectionTitle>
-      {others
-        .filter(s => !s.labels.find(s => s.name === "Slide"))
-        .map(s => (
-          <OtherWrapper key={s.id}>{renderUdemy(s.body)}</OtherWrapper>
-        ))}
-    </section>
-  </React.Fragment>
-);

@@ -19,89 +19,6 @@ interface State {
   baseFontSize: string;
 }
 
-const FadeInOut = keyframes`
-  0% {
-    opacity: 0;
-    margin-top: 4px;
-  }
-
-  100% {
-    opacity: 1;
-    margin-top: 0px;
-  }
-`;
-
-const Wrapper = Styled.main`
-  width: 100vw;
-  height: 100vh;
-  background-color: #FFF;
-  padding: 0 4rem;
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const MDWrapper = Styled.div`
-  animation: ${FadeInOut} 0.3s linear;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const PagePrevArea = Styled.div`
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100px;
-  height: 100%;
-  opacity: 0;
-  cursor: pointer;
-`;
-
-const PageNextArea = Styled.div`
-  position: fixed;
-  right: 0;
-  top: 0;
-  width: 100px;
-  height: 100%;
-  opacity: 0;
-  cursor: pointer;
-`;
-
-const BottomNavigationArea = Styled.div`
-  height: 70px;
-  position: fixed;
-  bottom: -70px;
-  width: 100%;
-  left: 0;
-  padding-top: 40px;
-  transition: all 300ms 0s ease;
-  &:hover {
-    bottom: 0;
-  }
-`;
-
-const BottomNavigationContainer = Styled.div`
-  background-color: ${Colors.font.secondary};
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const FullScreenButton = Styled(FullScreen)`
-  padding: 1rem;
-  cursor: pointer;
-  transition: all 300ms 0s ease;
-  &:hover {
-    transform: scale(1.5);
-  }
-`;
-
 export default class extends React.Component<Props, State> {
   state: State = {
     slideMarkdowns: [],
@@ -251,3 +168,86 @@ export default class extends React.Component<Props, State> {
     );
   }
 }
+
+const FadeInOut = keyframes`
+  0% {
+    opacity: 0;
+    margin-top: 4px;
+  }
+
+  100% {
+    opacity: 1;
+    margin-top: 0px;
+  }
+`;
+
+const Wrapper = Styled.main`
+  width: 100vw;
+  height: 100vh;
+  background-color: #FFF;
+  padding: 0 4rem;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const MDWrapper = Styled.div`
+  animation: ${FadeInOut} 0.3s linear;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const PagePrevArea = Styled.div`
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100px;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+`;
+
+const PageNextArea = Styled.div`
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 100px;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+`;
+
+const BottomNavigationArea = Styled.div`
+  height: 70px;
+  position: fixed;
+  bottom: -70px;
+  width: 100%;
+  left: 0;
+  padding-top: 40px;
+  transition: all 300ms 0s ease;
+  &:hover {
+    bottom: 0;
+  }
+`;
+
+const BottomNavigationContainer = Styled.div`
+  background-color: ${Colors.font.secondary};
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const FullScreenButton = Styled(FullScreen)`
+  padding: 1rem;
+  cursor: pointer;
+  transition: all 300ms 0s ease;
+  &:hover {
+    transform: scale(1.5);
+  }
+`;

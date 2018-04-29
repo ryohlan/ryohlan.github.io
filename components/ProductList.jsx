@@ -2,10 +2,26 @@ import React from "react";
 import Styled, { keyframes } from "styled-components";
 import ReactMarkdown from "react-markdown";
 import { Colors, Values } from "../Assets";
+import NoContents from "./NoContens";
 
 interface Props {
   products: Array<object>;
 }
+
+export default ({ products }: Props) =>
+  products.length > 0 ? (
+    <ProductList>
+      {products.map(md => {
+        if (md.labels.find(l => l.name === "SPApp")) {
+          return (
+            <ProductWrapper key={md.id}>{renderSPApp(md.body)}</ProductWrapper>
+          );
+        }
+      })}
+    </ProductList>
+  ) : (
+    <NoContents />
+  );
 
 const FadeInOut = keyframes`
   0% {
@@ -68,16 +84,4 @@ const renderSPApp = markdown => (
       `
     }}
   />
-);
-
-export default ({ products }: Props) => (
-  <ProductList>
-    {products.map(md => {
-      if (md.labels.find(l => l.name === "SPApp")) {
-        return (
-          <ProductWrapper key={md.id}>{renderSPApp(md.body)}</ProductWrapper>
-        );
-      }
-    })}
-  </ProductList>
 );

@@ -4,6 +4,7 @@ import { Values, Colors } from "../Assets";
 import CodeBlock from "./markdown/CodeBlock";
 import Link from "./markdown/Link";
 import ReactMarkdown from "react-markdown";
+import NoContents from "./NoContens";
 
 interface Props {
   posts: Array<any>;
@@ -68,20 +69,21 @@ const UpdatedTime = Styled.time`
   margin-bottm: 3em;
 `;
 
-export default ({ posts }: Props) => (
-  <BlogList>
-    {posts.map(s => (
-      <li key={s.id}>
-        <BlogPost>
-          <BlogTitle key={s.id}>{s.title}</BlogTitle>
-          <UpdatedTime>{new Date(s.updated_at).toLocaleString()}</UpdatedTime>
-          <BlogBody>
-            <ReactMarkdown
-              source={s.body}
-              renderers={{
-                code: CodeBlock,
-                link: Link,
-                image: Styled.img`
+export default ({ posts }: Props) =>
+  posts.length > 0 ? (
+    <BlogList>
+      {posts.map(s => (
+        <li key={s.id}>
+          <BlogPost>
+            <BlogTitle key={s.id}>{s.title}</BlogTitle>
+            <UpdatedTime>{new Date(s.updated_at).toLocaleString()}</UpdatedTime>
+            <BlogBody>
+              <ReactMarkdown
+                source={s.body}
+                renderers={{
+                  code: CodeBlock,
+                  link: Link,
+                  image: Styled.img`
                   max-width: 500px;
                   max-height: 500px;
                   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
@@ -92,11 +94,13 @@ export default ({ posts }: Props) => (
                     max-height: none;
                   }
               `
-              }}
-            />
-          </BlogBody>
-        </BlogPost>
-      </li>
-    ))}
-  </BlogList>
-);
+                }}
+              />
+            </BlogBody>
+          </BlogPost>
+        </li>
+      ))}
+    </BlogList>
+  ) : (
+    <NoContents />
+  );
