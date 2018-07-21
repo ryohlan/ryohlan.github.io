@@ -92,6 +92,7 @@ const OtherWrapper = Styled.div`
   display: flex;
   flex: 1;
   min-width: 30%;
+  box-shadow: 0 4px 50px rgba(0, 0, 0, .1);
   @media(max-width: ${Values.SP_BREAK_POINT}) {
     margin: 2px 0;
   }
@@ -99,17 +100,14 @@ const OtherWrapper = Styled.div`
 
 const ResponsiveSlideWrapper = Styled.div`
   flex: 1;
-  max-width: 50%;
-  margin: 1px;
-
-  @media(max-width: ${Values.SP_BREAK_POINT}) {
-    min-width: 100%;
-    margin: 0;
-    margin-bottom: 6px;
-  }
+  min-width: 100%;
+  margin: 0;
+  margin-bottom: 12px;
+  box-shadow: 0 4px 50px rgba(0, 0, 0, .1);
 `;
 
 const SlidesWrapper = Styled.div`
   display: flex;
   flex-wrap: wrap;
+  flex-direction: column;
 `;

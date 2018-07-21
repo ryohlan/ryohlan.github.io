@@ -39,6 +39,7 @@ const BlogPost = Styled.article.attrs({
   border-radius: 1px;
   position: relative;
   animation: ${FadeInOut} 0.2s linear;
+  box-shadow: 0 4px 50px rgba(0, 0, 0, .1);
   @media(max-width: ${Values.SP_BREAK_POINT}) {
     padding: 1.5em;
   }

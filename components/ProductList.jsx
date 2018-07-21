@@ -38,19 +38,18 @@ const FadeInOut = keyframes`
 const ProductList = Styled.section`
   display: flex;
   flex-wrap: wrap;
-  @media(max-width: ${800}px) {
-    flex-direction: column;
-  }
+  flex-direction: column;
 `;
 
 const ProductWrapper = Styled.div`
   background-color: #FFF;
   border-radius: 1px;
   padding: 1.3rem;
-  margin: 2px;
+  margin-bottom: 10px;
   flex: 1;
   min-width: 30%;
   animation: ${FadeInOut} 0.2s linear;
+  box-shadow: 0 4px 50px rgba(0, 0, 0, .1);
   @media(max-width: ${Values.SP_BREAK_POINT}) {
     margin: 2px 0;
   }

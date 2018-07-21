@@ -69,12 +69,14 @@ const NavList = Styled.div`
 const NavItem = Styled.div`
   flex: 1;
   padding: 3px;
-  background-color: ${({ active }) => (active ? Colors.font.primary : "#FFF")};
+  box-shadow: 0 4px 50px ${({ active }) =>
+    active ? "rgba(0, 0, 0, .2)" : "transparent"};
   border-radius: 1px;
   position: relative;
   padding-left: 30px;
   margin-bottom: 1em;
-  color: ${({ active }) => (active ? "#FFF" : Colors.font.primary)}
+  color: ${({ active }) =>
+    active ? Colors.font.primary : "rgba(0, 0, 0, .3)"};
   transition-duration: 0.5s;
   cursor: ${({ active }) => (active ? "normal" : "pointer")};
   @media(max-width: ${Values.SP_BREAK_POINT}) {
@@ -89,11 +91,11 @@ const NavItem = Styled.div`
     top: 10px;
     left: 10px;
     background-color: ${({ active }) =>
-      active ? "#FFF" : Colors.font.primary};
+      active ? Colors.font.primary : "rgba(0, 0, 0, .3)"};
     border-radius: 1px;
   };
   &:hover {
-    background-color: ${({ active }) => !active && "#c5c6cc"};
+    box-shadow: 0 4px 50px rgba(0, 0, 0, .2);
   };
 `;
 
