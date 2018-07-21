@@ -30,9 +30,9 @@ const FadeInOut = keyframes`
 const BlogPost = Styled.article.attrs({
   className: "blog-post"
 })`
-  padding: 3em;
+  padding: 3rem;
   background-color: #FFF;
-  margin-bottom: 0.8em;
+  margin-bottom: 2rem;
   position: relative;
   transition-duration: 0.5s;
   overflow: hidden;
@@ -40,25 +40,12 @@ const BlogPost = Styled.article.attrs({
   position: relative;
   animation: ${FadeInOut} 0.2s linear;
   box-shadow: 0 4px 50px rgba(0, 0, 0, .1);
-  @media(max-width: ${Values.SP_BREAK_POINT}) {
-    padding: 1.5em;
-  }
 `;
 
 const BlogTitle = Styled.h1`
   font-size: 1.2em;
-  margin-left: 20px;
   position: relative;
-  &:before {
-    content: '';
-    position: absolute;
-    width: 12px;
-    height: 12px;
-    top: 9px;
-    left: -20px;
-    background-color: ${Colors.font.primary};
-    border-radius: 1px;
-  };
+  color: rgba(255, 255,255, .9);
 `;
 
 const BlogBody = Styled.div`
@@ -68,6 +55,15 @@ const BlogBody = Styled.div`
 const UpdatedTime = Styled.time`
   font-size: 0.8em;
   margin-bottm: 3em;
+  color: rgba(255, 255,255, .7);
+`;
+
+const TitleWrapper = Styled.div`
+  background-color: rgba(0, 0, 0, .8);
+  margin-top: -3rem;
+  margin-left: -3rem;
+  margin-right: -3rem;
+  padding: 3rem;
 `;
 
 export default ({ posts }: Props) =>
@@ -76,8 +72,12 @@ export default ({ posts }: Props) =>
       {posts.map(s => (
         <li key={s.id}>
           <BlogPost>
-            <BlogTitle key={s.id}>{s.title}</BlogTitle>
-            <UpdatedTime>{new Date(s.updated_at).toLocaleString()}</UpdatedTime>
+            <TitleWrapper>
+              <BlogTitle key={s.id}>{s.title}</BlogTitle>
+              <UpdatedTime>
+                {new Date(s.updated_at).toLocaleString()}
+              </UpdatedTime>
+            </TitleWrapper>
             <BlogBody>
               <ReactMarkdown
                 source={s.body}
