@@ -43,7 +43,8 @@ const BlogPost = Styled.article.attrs({
 `;
 
 const BlogTitle = Styled.h1`
-  font-size: 1.2em;
+  font-size: 1.2rem;
+  line-height: 1.2em;
   position: relative;
   color: rgba(255, 255,255, .9);
 `;
@@ -72,7 +73,7 @@ export default ({ posts }: Props) =>
       {posts.map(s => (
         <li key={s.id}>
           <BlogPost>
-            <TitleWrapper>
+            <TitleWrapper id={`post_${s.id}`}>
               <BlogTitle key={s.id}>{s.title}</BlogTitle>
               <UpdatedTime>
                 {new Date(s.updated_at).toLocaleString()}
