@@ -39,7 +39,8 @@ export default class extends React.PureComponent<Props> {
           <Icon />
           <ProfileName>Ryohlan</ProfileName>
           <Skills>
-            iOS/Androd Apps,<br /> Web front-end developer, Web Designer
+            iOS/Androd Apps,<br /> Web front-end developer, Web Designer. <br />
+            Mainly React, ReactNative
           </Skills>
           <Contact>Contact me: sabure.app[at]gmail.com</Contact>
           <Icons>
