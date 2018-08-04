@@ -4,13 +4,14 @@
 * {
   margin: 0;
   word-break: break-word;
+  line-height: 1.8em;
+  letter-spacing: 0.07em;
 }
 
 html {
-  font-size: 15px;
+  font-size: 13px;
   color: #505156;
   font-family: "Source Code Pro", monospace;
-  background-color: #f1f1f1;
 }
 
 del a {
@@ -34,16 +35,22 @@ del a {
 
 .blog-post p {
   font-size: 1em;
-  line-height: 1.7rem;
   margin: 1.2rem 0;
-  letter-spacing: 0.05em;
 }
 
-pre code {
+pre {
+  padding: 1em;
+}
+
+code {
   font-family: "Source Code Pro", monospace;
   font-weight: 100;
-  padding: 1.5rem !important;
   background-color: transparent !important;
+}
+
+code * {
+  letter-spacing: 0.01em;
+  line-height: 1em;
 }
 
 p {
@@ -55,6 +62,11 @@ blockquote {
   padding-left: 1rem;
   margin: 1rem 0;
   color: #91939e;
+}
+
+ol,
+ul {
+  padding-left: 2em;
 }
 
 .loader,

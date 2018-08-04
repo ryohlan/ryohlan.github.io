@@ -1,6 +1,4 @@
-self.addEventListener("install", function(event) {
-  console.log("install");
-});
+self.addEventListener("install", function(event) {});
 
 self.addEventListener("fetch", function(event) {
   event.waitUntil(
@@ -16,7 +14,6 @@ self.addEventListener("fetch", function(event) {
   );
   event.respondWith(
     caches.match(event.request).then(function(response) {
-      console.log("cache check");
       if (response) {
         return response;
       }
